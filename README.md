@@ -81,3 +81,6 @@ Si realizas cambios en el código, reconstruye las imágenes:
 ```bash
 docker-compose up --build
 ```
+
+![image](https://github.com/user-attachments/assets/818d0464-1086-4eb1-ad08-f58b0e336a15)
+
