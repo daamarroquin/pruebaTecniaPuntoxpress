@@ -1,0 +1,111 @@
+<div class="mt-20 row">
+  <form
+    [formGroup]="reservationForm"
+    (ngSubmit)="actualizarReserva()"
+    class="max-w-md mx-auto"
+  >
+    <h2 class="text-lg font-semibold mb-5 text-center">Editar Reserva</h2>
+
+    <!-- Nombre -->
+    <div class="mb-5">
+      <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Nombre</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Ej. Cena Familiar"
+      />
+      <p
+        *ngIf="reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched"
+        class="text-red-600 text-sm"
+      >
+        Este campo es obligatorio.
+      </p>
+    </div>
+
+    <!-- Fecha -->
+    <div class="mb-5">
+      <label for="date" class="block mb-2 text-sm font-medium text-gray-700">Fecha</label>
+      <input
+        type="date"
+        id="date"
+        formControlName="date"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      />
+    </div>
+
+    <!-- Hora -->
+    <div class="mb-5">
+      <label for="time" class="block mb-2 text-sm font-medium text-gray-700">Hora</label>
+      <input
+        type="time"
+        id="time"
+        formControlName="time"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      />
+    </div>
+
+    <!-- Número de Personas -->
+    <div class="mb-5">
+      <label for="numberOfPeople" class="block mb-2 text-sm font-medium text-gray-700">Número de Personas</label>
+      <input
+        type="number"
+        id="numberOfPeople"
+        formControlName="numberOfPeople"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Ej. 4"
+      />
+    </div>
+
+    <!-- Estado -->
+    <div class="mb-5">
+      <label for="status" class="block mb-2 text-sm font-medium text-gray-700">Estado</label>
+      <select
+        id="status"
+        formControlName="status"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option value="PENDING">Pendiente</option>
+        <option value="CONFIRMED">Confirmado</option>
+        <option value="CANCELLED">Cancelado</option>
+      </select>
+    </div>
+
+    <!-- Cliente -->
+    <div class="mb-5">
+      <label for="client" class="block mb-2 text-sm font-medium text-gray-700">Cliente</label>
+      <select
+        id="client"
+        formControlName="client"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option *ngFor="let client of clients" [value]="client.id">
+          {{ client.firstName }} {{ client.lastName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Ubicación -->
+    <div class="mb-5">
+      <label for="location" class="block mb-2 text-sm font-medium text-gray-700">Ubicación</label>
+      <select
+        id="location"
+        formControlName="location"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option *ngFor="let location of locations" [value]="location.id">
+          {{ location.locationName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Botón para actualizar -->
+    <button
+      type="submit"
+      class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"
+    >
+      Actualizar Reserva
+    </button>
+  </form>
+</div>

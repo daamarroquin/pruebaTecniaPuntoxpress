@@ -1,0 +1,87 @@
+<div class="mt-20 row">
+  <form
+    [formGroup]="locationForm"
+    (ngSubmit)="actualizarUbicacion()"
+    class="max-w-sm mx-auto"
+  >
+    <h2 class="text-lg font-semibold mb-5 text-center">Actualizar Ubicación</h2>
+
+    <!-- Número de la Ubicación -->
+    <div class="mb-5">
+      <label for="number" class="block mb-2 text-sm font-medium text-gray-700"
+        >Número de la ubicación</label
+      >
+      <input
+        type="text"
+        id="number"
+        formControlName="number"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Ej. 7"
+      />
+      <p
+        *ngIf="
+          locationForm.get('number')?.invalid &&
+          locationForm.get('number')?.touched
+        "
+        class="text-red-600 text-sm"
+      >
+        Este campo es obligatorio y debe contener solo números.
+      </p>
+    </div>
+
+    <!-- Nombre de la Ubicación -->
+    <div class="mb-5">
+      <label
+        for="locationName"
+        class="block mb-2 text-sm font-medium text-gray-700"
+        >Nombre de la ubicación</label
+      >
+      <input
+        type="text"
+        id="locationName"
+        formControlName="locationName"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Ej. Mesa 1"
+      />
+      <p
+        *ngIf="
+          locationForm.get('locationName')?.invalid &&
+          locationForm.get('locationName')?.touched
+        "
+        class="text-red-600 text-sm"
+      >
+        Este campo es obligatorio.
+      </p>
+    </div>
+
+    <!-- Capacidad -->
+    <div class="mb-5">
+      <label for="capacity" class="block mb-2 text-sm font-medium text-gray-700"
+        >Capacidad</label
+      >
+      <input
+        type="number"
+        id="capacity"
+        formControlName="capacity"
+        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Ej. 20"
+      />
+      <p
+        *ngIf="
+          locationForm.get('capacity')?.invalid &&
+          locationForm.get('capacity')?.touched
+        "
+        class="text-red-600 text-sm"
+      >
+        Este campo es obligatorio y debe ser un número mayor que 0.
+      </p>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"
+    >
+      Actualizar Ubicación
+    </button>
+  </form>
+</div>
