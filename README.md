@@ -82,5 +82,11 @@ Si realizas cambios en el código, reconstruye las imágenes:
 docker-compose up --build
 ```
 
+```bash
+admin@example.com
+password
+
+http://localhost:4200/login
+```
 ![image](https://github.com/user-attachments/assets/818d0464-1086-4eb1-ad08-f58b0e336a15)
 
