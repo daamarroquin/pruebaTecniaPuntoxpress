@@ -79,7 +79,7 @@ Cambios en el Código no Reflejados:
 
 Si realizas cambios en el código, reconstruye las imágenes:
 ```bash
-docker-compose up --build
+sudo docker-compose -f deploy.yaml up --build
 ```
 
 
