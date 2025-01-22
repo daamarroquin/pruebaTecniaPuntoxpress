@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres:15.3
+    container_name: puntoxpressDataBase
+    restart: always
+    environment:
+      POSTGRES_USER: daamarroquin
+      POSTGRES_PASSWORD: myMarroquin
+      POSTGRES_DB: puntoxpressDataBase
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backendPuntoxpress
+      dockerfile: Dockerfile
+    container_name: puntoxpressBackend
+    depends_on:
+      - db
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/puntoxpressDataBase
+      SPRING_DATASOURCE_USERNAME: daamarroquin
+      SPRING_DATASOURCE_PASSWORD: myMarroquin
+    command: ./gradlew bootRun
+
+  frontend:
+    build:
+      context: ./frontendPuntoxpress
+      dockerfile: Dockerfile
+    container_name: puntoxpressFrontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    networks:
+      - puntoxpress-network
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  puntoxpress-network:
+    driver: bridge
